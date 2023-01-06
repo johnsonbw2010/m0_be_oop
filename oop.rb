@@ -26,7 +26,7 @@ p unicorn1
 #  it should have a drink method. When called, the thirsty attribute changes to false
 
 class Vampire       #This line establishes the Vampire class.
-    def initialize(name,pet = "bat")    #This line establishes the parameter for name
+    def initialize(name,pet = "bat")    #This line establishes the parameter for name & declares that there is a parameter for pet, but pet will default to "bat" if no argument is given.
         @name = name        #This line indicates that the attribute name will be determined by the argument provided
         @pet = pet        #This line indicates that the default pet attribute will be "bat"
         @thirsty = true     #This line declares the thirsty attribute as true.
@@ -81,34 +81,41 @@ p dragon1
 #  it should have an is_old attribute that defaults to false. once a Hobbit is 101, it is old.
 #  it should have a has_ring attribute. If the Hobbit's name is "Frodo", true, if not, false.
 
-class Hobbit
-    attr_reader :name
-    def initialize(name, disposition)
-      @name = name
-      @disposition = disposition
-      @age = 0
-      @is_adult = false
-      @is_old = false
-      @has_ring = 
-        if @name == "Frodo"
-            true
-        else
-          false
+class Hobbit    #This line establishes the Hobbit class
+    attr_reader :name   #This line allows the name attribute to be read, but not changed
+    def initialize(name, disposition)   #This line declares the parameters for the name and disposition attributes
+      @name = name                      #This line indicates that the @name attribute will be the first argument defined when a new Hobbit is created.
+      @disposition = disposition        #This line indicates that the @disposition attribute will be the second argument defined when a new Hobbit is created.
+      @age = 0                          #This line indicates that the @age attribute will default to 0
+      @is_adult = false                 #This line indicates that the @is_adult attribute will default to false
+      @is_old = false                   #This line indicates that the @is_old attribute will default to false
+      @has_ring =                       #This line declares the attribute @has_ring will be determined by the if statement below
+        if @name == "Frodo"             #If the @name attribute is equal to "Frodo",
+            true                        #@has_ring = true
+        else                            #Otherwise,
+          false                         #@has_ring = false.
         end
     end
   
-    def celebrate_birthday
-      @age = @age.next
-        if @age >= 33
-          @is_adult = true
-        end
-      if @age >= 101
-        @is_old = true
-      else
-        @is_old = false
+    def celebrate_birthday            #This line defines a method called celebrate_birthday
+      @age = @age.next                #When called, it will set the @age attribute to the next highest integer.
+        if @age >= 33                 #If the @age attribute is greater than or equal to 33
+          @is_adult = true            #@is_adult = true
+        end   
+      if @age >= 101                  #if @age attribute is greater than or equal to 101
+        @is_old = true                #@is_old = true
+      else                            #Otherwise,
+        @is_old = false               #@is_old = false
       end
     end
   end
 
 hobbit1 = Hobbit.new("Frodo", "pleasant")
 p hobbit1
+35.times {hobbit1.celebrate_birthday}
+p hobbit1
+70.times {hobbit1.celebrate_birthday}
+p hobbit1
+
+hobbit2 = Hobbit.new("Bilbo", "reserved")
+p hobbit2
